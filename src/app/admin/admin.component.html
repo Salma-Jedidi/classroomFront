@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Form</title>
+
+</head>
+<nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
+  <a class="navbar-brand logo-container" href="#">
+      <img src="assets/images/394019026_262490696850008_273273111956641034_n.png" alt="Logo">
+  </a>
+  <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+      <div class="navbar-nav ms-auto p-4 p-lg-0">
+        <a href="index.html" class="nav-item nav-link active">Home</a>
+        <a routerLink="/useraffich" class="nav-item nav-link">Events</a>
+        <a routerLink="/useraffich" class="nav-item nav-link">Courses</a>
+
+        <a routerLink="/useraffich"class="nav-item nav-link">Classes</a>
+      </div> 
+      <a href="" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Join Now<i class="fa fa-arrow-right ms-3"></i></a>
+  </div>
+</nav>
+<body>
+
+  <div class="container">
+    
+        <h2>Admin Panel</h2>
+        <br><br>
+        <label for="modelSelect">Choose a Model:</label><br>
+        <select id="modelSelect" [(ngModel)]="selectedModel" (change)="onModelChange()">
+          <option value="event">Event</option>
+          <option value="class">Class</option>
+          <option value="subject">Subject</option>
+          <option value="user">User</option>
+        </select>
+        <br><br>
+        <!-- Additional fields based on the selected model -->
+        <div *ngIf="selectedModel === 'event'">
+          <!-- Event-specific fields go here -->
+          <!-- Example: Event Name -->
+          <label for="eventName">Event Name:</label>
+          <input type="text" id="eventName" [(ngModel)]="eventName" />
+        </div>
+      
+        <div *ngIf="selectedModel === 'class'">
+          <!-- Class-specific fields go here -->
+          <!-- Example: Class Name -->
+          <label for="className">Class Name:</label>
+          <input type="text" id="className" [(ngModel)]="className" />
+        </div>
+      
+        <div *ngIf="selectedModel === 'subject'">
+          <!-- Subject-specific fields go here -->
+          <!-- Example: Subject Name -->
+          <label for="subjectName">Subject Name:</label>
+          <input type="text" id="subjectName" [(ngModel)]="subjectName" />
+        </div>
+      
+        <div *ngIf="selectedModel === 'user'">
+          <!-- User-specific fields go here -->
+          <!-- Example: User Name -->
+          <label for="userName">User Name:</label>
+          <input type="text" id="userName" [(ngModel)]="userName" />
+        </div>
+        <br>
+        <button (click)="performAction()">Perform Action</button>
+      </div>
+     
+<router-outlet  ></router-outlet>
+</body>
+</html>
+

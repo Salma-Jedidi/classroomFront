@@ -1,0 +1,45 @@
+<body>
+    <div class="container">
+        <h2>Choose Action</h2>
+        <label for="action">Select Action:</label>
+        <select id="action" name="action" [(ngModel)]="selectedAction">
+          <option value="getEvent">Get Event</option>
+          <option value="getClass">Get Class</option>
+          <option value="getSubject">Get Subject</option>
+        </select>
+      
+        <div *ngIf="selectedAction === 'getEvent'">
+          <h2>Get Event</h2>
+          <label for="getEventId">Event ID:</label>
+          <input type="number" id="getEventId" name="getEventId" [(ngModel)]="getEventId" required>
+      
+          <button (click)="getEvent()">Get Event</button>
+      
+          <div *ngIf="retrievedEvent">
+            <h3>Retrieved Event:</h3>
+            <pre>{{ retrievedEvent | json }}</pre>
+          </div>
+        </div>
+        
+        <div *ngIf="selectedAction === 'getClass'">
+          <h2>Get Class</h2>
+          <label for="getClassId">Class ID:</label>
+          <input type="number" id="getClassId" name="getClassId" [(ngModel)]="getClassId" required>
+      
+          <button (click)="getClass()">Get Class</button>
+      
+          
+        </div>
+        
+        <div *ngIf="selectedAction === 'getSubject'">
+          <div *ngIf="subjectDetails">
+            <h2>Subject Details</h2>
+            <p>ID: {{ subjectDetails.idSubject }}</p>
+            <p>Title: {{ subjectDetails.title }}</p>
+            <p>Note: {{ subjectDetails.note }}</p>
+            <p>Absence: {{ subjectDetails.absence }}</p>
+          </div>
+        </div>
+      </div>
+      
+</body>

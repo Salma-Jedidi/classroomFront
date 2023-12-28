@@ -1,0 +1,50 @@
+<body>
+    <!-- user.component.html -->
+
+<div class="container">
+    <h2>User Actions</h2>
+  
+    <button (click)="getUsersByRole()">Get Users By Role</button>
+  
+    <div>
+      <h3>Add Absence To User</h3>
+      <label for="userIdAbsence">User ID:</label>
+      <input type="number" id="userIdAbsence" name="userIdAbsence" [(ngModel)]="userId" required>
+  
+      <label for="subjectIdAbsence">Subject ID:</label>
+      <input type="number" id="subjectIdAbsence" name="subjectIdAbsence" [(ngModel)]="subjectId" required>
+  
+      <button (click)="addAbsenceToUser()">Add Absence</button>
+    </div>
+  
+    <div>
+      <h3>Display User</h3>
+      <label for="userIdDisplay">User ID:</label>
+      <input type="number" id="userIdDisplay" name="userIdDisplay" [(ngModel)]="userId" required>
+  
+      <button (click)="displayUser()">Display User</button>
+    </div>
+  
+    <div>
+      <h3>Affect User to Class</h3>
+      <label for="userIdClass">User ID:</label>
+      <input type="number" id="userIdClass" name="userIdClass" [(ngModel)]="userId" required>
+  
+      <label for="classId">Class ID:</label>
+      <input type="number" id="classId" name="classId" [(ngModel)]="classId" required>
+  
+      <button (click)="affectUtilisateurClasse()">Affect User to Class</button>
+    </div>
+  
+    <div>
+      <h3>Affect User to Subject</h3>
+      <label for="userIdSubject">User ID:</label>
+      <input type="number" id="userIdSubject" name="userIdSubject" [(ngModel)]="userId" required>
+  
+      <label for="subjectId">Subject ID:</label>
+      <input type="number" id="subjectId" name="subjectId" [(ngModel)]="subjectId" required>
+  
+      <button (click)="affectUtilisateurSubject()">Affect User to Subject</button>
+    </div>
+  </div>
+  

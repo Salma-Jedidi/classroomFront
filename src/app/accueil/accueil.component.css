@@ -1,0 +1,13 @@
+
+body{ font-family: 'Calibri', 'Arial', sans-serif;}
+
+.navbar .navbar-brand.logo-container {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.navbar .navbar-brand.logo-container img {
+    height: 100px; /* Adjusted height to match navbar */
+    margin-right: 10px; /* Added margin for spacing */
+}
