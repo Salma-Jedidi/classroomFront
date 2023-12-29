@@ -25,7 +25,8 @@ export class CoursesaffichageComponent {
 
   selectedAction: string = 'getEvent'; // Default action
   result: any; // Variable to store the result
- 
+
+  retrievedClass: any = null;
   constructor(private adminService: AdminService, private fb: FormBuilder) {
     this.getEventForm = this.fb.group({
       // Define form controls for Get Event action
@@ -59,7 +60,7 @@ export class CoursesaffichageComponent {
   getClass() {
     this.adminService.affichClass(this.getClassId).subscribe(
       (schoolClass: SchoolClass) => {
-        this.retrievedClass$ = schoolClass;
+        this.retrievedClass = schoolClass;
         console.log('Class retrieved:', schoolClass);
       },
       (error) => {

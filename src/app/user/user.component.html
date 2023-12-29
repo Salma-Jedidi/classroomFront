@@ -4,7 +4,7 @@
 <div class="container">
     <h2>User Actions</h2>
   
-    <button (click)="getUsersByRole()">Get Users By Role</button>
+   
   
     <div>
       <h3>Add Absence To User</h3>
@@ -21,9 +21,30 @@
       <h3>Display User</h3>
       <label for="userIdDisplay">User ID:</label>
       <input type="number" id="userIdDisplay" name="userIdDisplay" [(ngModel)]="userId" required>
-  
+    
       <button (click)="displayUser()">Display User</button>
     </div>
+    
+    <div *ngIf="user">
+      <h3>User Details:</h3>
+      <table>
+        <tr>
+          <th>ID</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <!-- Add more headers for other attributes -->
+        </tr>
+        <tr>
+          <td>{{ user.id }}</td>
+          <td>{{ user.firstname }}</td>
+          <td>{{ user.lastname }}</td>
+          <td>{{ user.email }}</td>
+          <!-- Add more cells for other attributes -->
+        </tr>
+      </table>
+    </div>
+    
   
     <div>
       <h3>Affect User to Class</h3>

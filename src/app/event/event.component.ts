@@ -10,8 +10,8 @@ import { Event } from '../models/Event';
 export class EventComponent {
   formData: Event = {
     idEvent: 0,
-    dateDebut: '',
-    dateFin: '',
+    dateDebut: new Date(), // Or set it to null if you want
+    dateFin: new Date(),
     lieuEvent: '',
   };
 

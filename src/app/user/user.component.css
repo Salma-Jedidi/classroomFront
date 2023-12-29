@@ -63,4 +63,29 @@ body {
     button:hover {
       background: linear-gradient(45deg, #4a44b8, #3b518a); /* Adjusted gradient on hover */
     }
-    
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    /* Style the container */
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* Add some spacing and style to the heading */
+    h2 {
+      margin-bottom: 10px;
+    }

@@ -13,7 +13,16 @@ export class UserComponent {
   role: string = 'student'; // Replace 'student' with the desired role
   subjectId: number = 1; // Replace 1 with the desired subject ID
   classId: number = 1; // Replace 1 with the desired class ID
+ 
+  user: User = {
+    id: 0,
+    firstname: '',
+    lastname: '',
+    email: '',
+    password: '',
+    role: '',
 
+  };
   constructor(private userService: AdminService) {}
 
   getUsersByRole() {
@@ -40,11 +49,11 @@ export class UserComponent {
 
   displayUser() {
     this.userService.displayUser(this.userId).subscribe(
-      (user: User) => {
-        console.log('User details:', user);
+      (userData: User) => {
+        this.user = userData;
       },
       (error) => {
-        console.error('Error fetching user details:', error);
+        console.error('Error fetching user:', error);
       }
     );
   }

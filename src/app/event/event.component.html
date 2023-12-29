@@ -31,14 +31,28 @@
       <h2>Get Event</h2>
       <label for="getEventId">Event ID:</label>
       <input type="number" id="getEventId" name="getEventId" [(ngModel)]="getEventId" required>
-
+    
       <button (click)="getEvent()">Get Event</button>
-
+    
       <div *ngIf="retrievedEvent">
         <h3>Retrieved Event:</h3>
-        <pre>{{ retrievedEvent | json }}</pre>
+        <table>
+          <tr>
+            <th>ID</th>
+            <th>Date Début</th>
+            <th>Date Fin</th>
+            <th>Lieu</th>
+          </tr>
+          <tr>
+            <td>{{ retrievedEvent.idEvent }}</td>
+            <td>{{ retrievedEvent.dateDebut | date: 'medium' }}</td>
+            <td>{{ retrievedEvent.dateFin | date: 'medium' }}</td>
+            <td>{{ retrievedEvent.lieuEvent }}</td>
+          </tr>
+        </table>
       </div>
     </div>
+    
 
     <div>
       <h2>Update Event</h2>
