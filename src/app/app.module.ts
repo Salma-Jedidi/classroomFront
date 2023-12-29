@@ -14,6 +14,8 @@ import { ClassComponent } from './class/class.component';
 import { SubjectComponent } from './subject/subject.component';
 import { UserComponent } from './user/user.component';
 import { UseraffichageComponent } from './useraffichage/useraffichage.component';
+import { SubjectaffichageComponent } from './subjectaffichage/subjectaffichage.component';
+import { CoursesaffichageComponent } from './coursesaffichage/coursesaffichage.component';
 
 
 @NgModule({
@@ -26,7 +28,9 @@ import { UseraffichageComponent } from './useraffichage/useraffichage.component'
     ClassComponent,
     SubjectComponent,
     UserComponent,
-    UseraffichageComponent
+    UseraffichageComponent,
+    SubjectaffichageComponent,
+    CoursesaffichageComponent
   ],
   imports: [
     BrowserModule,

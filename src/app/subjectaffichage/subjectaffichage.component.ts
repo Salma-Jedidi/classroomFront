@@ -1,17 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AdminService } from '../services/admin.service';
-import { Event } from '../models/Event';
-import { SchoolClass } from '../models/SchoolClass';
 import { Subject } from '../models/Subject';
 import { Observable } from 'rxjs';
 import { of } from 'rxjs';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { NgModel } from '@angular/forms';
 @Component({
-  selector: 'app-useraffichage',
-  templateUrl: './useraffichage.component.html',
-  styleUrls: ['./useraffichage.component.css']
+  selector: 'app-subjectaffichage',
+  templateUrl: './subjectaffichage.component.html',
+  styleUrls: ['./subjectaffichage.component.css']
 })
-export class UseraffichageComponent  {
+export class SubjectaffichageComponent {
   getEventForm: FormGroup;
   getClassForm: FormGroup;
   getSubjectForm: FormGroup;
@@ -20,7 +19,7 @@ export class UseraffichageComponent  {
   getClassId: number = 0;
   idSubject: number = 1; // ID du sujet à récupérer
   retrievedEvent: Event | null = null;
-  retrievedClass$: SchoolClass | null = null; // Change the type to SchoolClass
+
   subjectDetails: any; // You should create a model based on the structure of the response
 
   selectedAction: string = 'getEvent'; // Default action
@@ -40,18 +39,27 @@ export class UseraffichageComponent  {
     });
   }
 
+  userId: string = ''; // Assume user ID is a string, modify as needed
+  subjectId: string = ''; // Assume subject ID is a string, modify as needed
 
-  getEvent() {
-    this.adminService.affichEvent(this.getEventId).subscribe(
-      (event: Event) => {
-        this.retrievedEvent = event;
-        console.log('Event retrieved:', event);
+
+  // ...
+
+  getSubjectDetails() {
+    this.adminService.getSubjectDetails(this.userId, this.subjectId).subscribe(
+      (data) => {
+        if (data !== null) {
+          this.subjectDetails = data;
+          console.log('Subject details:', this.subjectDetails);
+        } else {
+          console.warn('Subject not found');
+          // Handle the case where the subject is not found
+        }
       },
       (error) => {
-        console.error('Error fetching event:', error);
+        console.error('Error fetching subject details:', error);
       }
     );
   }
-
- 
+  
 }

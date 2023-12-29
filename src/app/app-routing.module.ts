@@ -8,6 +8,8 @@ import { ClassComponent } from './class/class.component';
 import { UserComponent } from './user/user.component';
 import { SubjectComponent } from './subject/subject.component';
 import { UseraffichageComponent } from './useraffichage/useraffichage.component';
+import { CoursesaffichageComponent } from './coursesaffichage/coursesaffichage.component';
+import { SubjectaffichageComponent } from './subjectaffichage/subjectaffichage.component';
 
 
 const routes: Routes = [
@@ -19,6 +21,8 @@ const routes: Routes = [
   {path:'subject',component:SubjectComponent},
   {path:'',component:SignComponent},
   {path:'useraffich',component:UseraffichageComponent},
+  {path:'courseaffich',component:CoursesaffichageComponent},
+  {path:'subjectaffich',component:SubjectaffichageComponent},
 ];
 
 @NgModule({

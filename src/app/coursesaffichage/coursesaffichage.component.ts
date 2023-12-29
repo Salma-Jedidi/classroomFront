@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AdminService } from '../services/admin.service';
 import { Event } from '../models/Event';
 import { SchoolClass } from '../models/SchoolClass';
@@ -7,11 +7,11 @@ import { Observable } from 'rxjs';
 import { of } from 'rxjs';
 import { FormBuilder, FormGroup } from '@angular/forms';
 @Component({
-  selector: 'app-useraffichage',
-  templateUrl: './useraffichage.component.html',
-  styleUrls: ['./useraffichage.component.css']
+  selector: 'app-coursesaffichage',
+  templateUrl: './coursesaffichage.component.html',
+  styleUrls: ['./coursesaffichage.component.css']
 })
-export class UseraffichageComponent  {
+export class CoursesaffichageComponent {
   getEventForm: FormGroup;
   getClassForm: FormGroup;
   getSubjectForm: FormGroup;
@@ -40,6 +40,9 @@ export class UseraffichageComponent  {
     });
   }
 
+/*   ngOnInit() {
+    this.getSubjectDetails();
+  } */
 
   getEvent() {
     this.adminService.affichEvent(this.getEventId).subscribe(
@@ -53,5 +56,49 @@ export class UseraffichageComponent  {
     );
   }
 
- 
+  getClass() {
+    this.adminService.affichClass(this.getClassId).subscribe(
+      (schoolClass: SchoolClass) => {
+        this.retrievedClass$ = schoolClass;
+        console.log('Class retrieved:', schoolClass);
+      },
+      (error) => {
+        console.error('Error fetching class:', error);
+      }
+    );
+  }
+
+/*   getSubjectDetails() {
+    this.adminService.getSubjectDetails(this.idSubject).subscribe(
+      (data) => {
+        this.subjectDetails = data;
+        console.log('Subject details:', this.subjectDetails);
+      },
+      (error) => {
+        console.error('Error fetching subject details:', error);
+      }
+    );
+  } 
+
+  performAction() {
+    switch (this.selectedAction) {
+      case 'getEvent':
+        this.getEvent();
+        break;
+
+      case 'getClass':
+        this.getClass();
+        break;
+
+      case 'getSubject':
+        this.getSubjectDetails();
+        break;
+
+      default:
+        console.error('Invalid action:', this.selectedAction);
+    }
+  }*/
+
 }
+
+

@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, catchError, of } from 'rxjs';
 import { Event } from '../models/Event';
 import { SchoolClass } from '../models/SchoolClass';
 import { Subject } from '../models/Subject';
+
 
 @Injectable({
   providedIn: 'root',
@@ -74,9 +75,21 @@ export class AdminService {
   updateSubject(subject: Subject): Observable<Subject> {
     return this.http.put<Subject>(`${this.baseUrl}/updateSubject`, subject);
   }
-  getSubjectDetails(idSubject: number): Observable<Subject> {
-    return this.http.get<Subject>(`${this.baseUrl}/${idSubject}/details`);
+  getSubjectDetails(userId: string, subjectId: string): Observable<Subject | null> {
+    const url = `${this.baseUrl}/${userId}/${subjectId}`;
+  
+    return this.http.get<Subject>(url).pipe(
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === 404) {
+          // Handle 404 error (Subject not found)
+          console.error('Subject not found:', error);
+          return of(null);
+        } else {
+          // Handle other errors
+          console.error('Error fetching subject details:', error);
+          throw error;
+        }
+      })
+    );
   }
-
-
 }
