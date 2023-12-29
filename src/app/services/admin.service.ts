@@ -76,16 +76,16 @@ export class AdminService {
     return this.http.put<Subject>(`${this.baseUrl}/updateSubject`, subject);
   }
   getSubjectDetails(userId: string, subjectId: string): Observable<Subject | null> {
-    const url = `${this.baseUrl}/${userId}/${subjectId}`;
+    // Remove any trailing slashes from this.baseUrl
+    const url = `${this.baseUrl}/affichersubject/${userId}/${subjectId}/details`;
+    console.log('Constructed URL:', url);
   
     return this.http.get<Subject>(url).pipe(
       catchError((error: HttpErrorResponse) => {
         if (error.status === 404) {
-          // Handle 404 error (Subject not found)
           console.error('Subject not found:', error);
           return of(null);
         } else {
-          // Handle other errors
           console.error('Error fetching subject details:', error);
           throw error;
         }
