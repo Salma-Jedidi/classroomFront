@@ -39,35 +39,7 @@
           <option value="user">User</option>
         </select>
         <br><br>
-        <!-- Additional fields based on the selected model -->
-        <div *ngIf="selectedModel === 'event'">
-          <!-- Event-specific fields go here -->
-          <!-- Example: Event Name -->
-          <label for="eventName">Event Name:</label>
-          <input type="text" id="eventName" [(ngModel)]="eventName" />
-        </div>
-      
-        <div *ngIf="selectedModel === 'class'">
-          <!-- Class-specific fields go here -->
-          <!-- Example: Class Name -->
-          <label for="className">Class Name:</label>
-          <input type="text" id="className" [(ngModel)]="className" />
-        </div>
-      
-        <div *ngIf="selectedModel === 'subject'">
-          <!-- Subject-specific fields go here -->
-          <!-- Example: Subject Name -->
-          <label for="subjectName">Subject Name:</label>
-          <input type="text" id="subjectName" [(ngModel)]="subjectName" />
-        </div>
-      
-        <div *ngIf="selectedModel === 'user'">
-          <!-- User-specific fields go here -->
-          <!-- Example: User Name -->
-          <label for="userName">User Name:</label>
-          <input type="text" id="userName" [(ngModel)]="userName" />
-        </div>
-        <br>
+        
         <button (click)="performAction()">Perform Action</button>
       </div>
      
