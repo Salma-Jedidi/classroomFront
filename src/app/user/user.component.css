@@ -21,6 +21,7 @@ body {
       border-radius: 8px;
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Larger box shadow */
       transition: background-color 0.01s ease; /* Smooth transition for background color */
+      margin-left: 500px; 
     }
     
     .container:hover {

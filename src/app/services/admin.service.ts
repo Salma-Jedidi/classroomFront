@@ -5,6 +5,7 @@ import { Event } from '../models/Event';
 import { SchoolClass } from '../models/SchoolClass';
 import { Subject } from '../models/Subject';
 import { User } from '../models/User';
+import { Note } from '../models/Note';
 
 @Injectable({
   providedIn: 'root',
@@ -13,6 +14,15 @@ export class AdminService {
   private baseUrl = 'http://localhost:8089/api/v1/auth/adminpage';
 
   constructor(private http: HttpClient) {}
+  addNoteWithParams(userId: number, subjectId: number, noteValue: number): Observable<void> {
+    const url = `${this.baseUrl}/addNote/${userId}/${subjectId}/${noteValue}`;
+    return this.http.post<void>(url, {});
+  }
+
+  listNotes(userId: number, subjectId: number): Observable<Note[]> {
+    const url = `${this.baseUrl}/list/${userId}/${subjectId}`;
+    return this.http.get<Note[]>(url);
+  }
   getSubjectsByClassId(classId: number): Observable<Subject[]> {
     const url = `${this.baseUrl}/byClassSubject/${classId}`;
     return this.http.get<Subject[]>(url);

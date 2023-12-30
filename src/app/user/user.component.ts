@@ -14,6 +14,7 @@ export class UserComponent {
   subjectId: number = 1; // Replace 1 with the desired subject ID
   classId: number = 1; // Replace 1 with the desired class ID
   users: User[] = [];
+  noteValue: number=0;
   user: User = {
     id: 0,
     firstname: '',
@@ -36,16 +37,7 @@ export class UserComponent {
     );
   }
 
-  addAbsenceToUser() {
-    this.userService.addAbsenceToUser(this.userId, this.subjectId).subscribe(
-      () => {
-        console.log('Absence added to user successfully.');
-      },
-      (error) => {
-        console.error('Error adding absence to user:', error);
-      }
-    );
-  }
+
 
   displayUser() {
     this.userService.displayUser(this.userId).subscribe(
@@ -89,5 +81,17 @@ export class UserComponent {
           console.error('Error fetching users by role and class ID:', error);
         }
       );
+  }
+ 
+  addNote(): void {
+    this.userService.addNoteWithParams(this.userId, this.subjectId, this.noteValue).subscribe(
+      () => {
+        // Handle success, maybe show a success message
+      },
+      (error) => {
+        console.error('Error adding note:', error);
+        // Handle error, maybe show an error message
+      }
+    );
   }
 }

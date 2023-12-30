@@ -10,8 +10,7 @@ export class SubjectComponent {
   subjectData: Subject = {
     idSubject: 0,
     title: '',
-    note: 0,
-    absence: 0
+
   };
 
   idClass: number = 0; // Assuming you have a way to get the class ID
