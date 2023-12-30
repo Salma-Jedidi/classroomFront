@@ -1,52 +1,49 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AdminService } from '../services/admin.service';
 import { Subject } from '../models/Subject';
-import { Observable } from 'rxjs';
-import { of } from 'rxjs';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { NgModel } from '@angular/forms';
+
 @Component({
   selector: 'app-subjectaffichage',
   templateUrl: './subjectaffichage.component.html',
   styleUrls: ['./subjectaffichage.component.css']
 })
-export class SubjectaffichageComponent {
-  getEventForm: FormGroup;
-  getClassForm: FormGroup;
+export class SubjectaffichageComponent implements OnInit {
   getSubjectForm: FormGroup;
 
-  getEventId: number = 0;
-  getClassId: number = 0;
-  idSubject: number = 1; // ID du sujet à récupérer
-  retrievedEvent: Event | null = null;
+  userId: string = '';
+  subjectId: string = '';
+  classId: number = 1; // Replace with the desired class ID
+  subjects: Subject[] = [];
+  subjectDetails: any; // Modify based on the actual structure
 
-  subjectDetails: any; // You should create a model based on the structure of the response
-
-  selectedAction: string = 'getEvent'; // Default action
-  result: any; // Variable to store the result
- 
   constructor(private adminService: AdminService, private fb: FormBuilder) {
-    this.getEventForm = this.fb.group({
-      // Define form controls for Get Event action
-    });
-
-    this.getClassForm = this.fb.group({
-      // Define form controls for Get Class action
-    });
-
     this.getSubjectForm = this.fb.group({
-      // Define form controls for Get Subject action
+      userId: [''], // Define form controls if needed
+      subjectId: [''],
     });
   }
 
-  userId: string = ''; // Assume user ID is a string, modify as needed
-  subjectId: string = ''; // Assume subject ID is a string, modify as needed
+  ngOnInit(): void {
+    this.getSubjectsByClassId();
+  }
 
-
-  // ...
+  getSubjectsByClassId(): void {
+    this.adminService.getSubjectsByClassId(this.classId).subscribe(
+      (subjects: Subject[]) => {
+        this.subjects = subjects;
+      },
+      (error) => {
+        console.error('Error fetching subjects by class ID:', error);
+      }
+    );
+  }
+  showTable: boolean = false;
 
   getSubjectDetails() {
-    this.adminService.getSubjectDetails(this.userId, this.subjectId).subscribe(
+    const { userId, subjectId } = this.getSubjectForm.value;
+
+    this.adminService.getSubjectDetails(userId, subjectId).subscribe(
       (data) => {
         if (data !== null) {
           this.subjectDetails = data;
@@ -61,5 +58,7 @@ export class SubjectaffichageComponent {
       }
     );
   }
-  
+  toggleTableVisibility(): void {
+    this.showTable = !this.showTable;
+  }
 }

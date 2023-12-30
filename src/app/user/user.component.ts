@@ -10,10 +10,10 @@ import { User } from '../models/User'; // Import the User model
 })
 export class UserComponent {
   userId: number = 0; // You need to set the user ID appropriately
-  role: string = 'student'; // Replace 'student' with the desired role
+  role: string = ''; // Replace 'student' with the desired role
   subjectId: number = 1; // Replace 1 with the desired subject ID
   classId: number = 1; // Replace 1 with the desired class ID
- 
+  users: User[] = [];
   user: User = {
     id: 0,
     firstname: '',
@@ -78,5 +78,16 @@ export class UserComponent {
         console.error('Error associating user with subject:', error);
       }
     );
+  }
+  getUsersByClassRole(role: string, classId: number): void {
+    this.userService.getUsersByClassRole(role, classId)
+      .subscribe(
+        (users: User[]) => { 
+          this.users = users;
+        },
+        (error) => {
+          console.error('Error fetching users by role and class ID:', error);
+        }
+      );
   }
 }

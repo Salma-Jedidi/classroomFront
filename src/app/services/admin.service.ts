@@ -4,7 +4,7 @@ import { Observable, catchError, of } from 'rxjs';
 import { Event } from '../models/Event';
 import { SchoolClass } from '../models/SchoolClass';
 import { Subject } from '../models/Subject';
-
+import { User } from '../models/User';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +13,20 @@ export class AdminService {
   private baseUrl = 'http://localhost:8089/api/v1/auth/adminpage';
 
   constructor(private http: HttpClient) {}
+  getSubjectsByClassId(classId: number): Observable<Subject[]> {
+    const url = `${this.baseUrl}/byClassSubject/${classId}`;
+    return this.http.get<Subject[]>(url);
+  }
 
+  getUsersByClassId(classId: number): Observable<User[]> {
+    const url = `${this.baseUrl}/byClass/${classId}`;
+    return this.http.get<User[]>(url);
+  }
+  getUsersByClassRole(role: string, classId: number): Observable<User[]> {
+    const url = `${this.baseUrl}/byClassRole?role=${role}&classId=${classId}`;
+    return this.http.get<User[]>(url);
+  }
+ 
   addClass(schoolClass: SchoolClass): Observable<SchoolClass> {
     return this.http.post<SchoolClass>(`${this.baseUrl}/addclass`, schoolClass);
   }

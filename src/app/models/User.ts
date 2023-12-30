@@ -6,5 +6,6 @@ export interface User {
     email: string;
     password: string;
     role: string; // ou Enum pour correspondre à Role côté serveur
+   
   }
   
