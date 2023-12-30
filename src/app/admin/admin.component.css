@@ -74,7 +74,7 @@ body {
 }
 
 .navbar .navbar-brand.logo-container img {
-    height: 86px; /* Adjusted height to match navbar */
+    height: 80px; /* Adjusted height to match navbar */
     margin-right: 10px; /* Added margin for spacing */
 }
 .btn-small {

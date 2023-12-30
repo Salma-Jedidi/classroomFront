@@ -10,6 +10,7 @@ import { SubjectComponent } from './subject/subject.component';
 import { UseraffichageComponent } from './useraffichage/useraffichage.component';
 import { CoursesaffichageComponent } from './coursesaffichage/coursesaffichage.component';
 import { SubjectaffichageComponent } from './subjectaffichage/subjectaffichage.component';
+import { NotesaffichageComponent } from './notesaffichage/notesaffichage.component';
 
 
 const routes: Routes = [
@@ -23,6 +24,7 @@ const routes: Routes = [
   {path:'useraffich',component:UseraffichageComponent},
   {path:'courseaffich',component:CoursesaffichageComponent},
   {path:'subjectaffich',component:SubjectaffichageComponent},
+  {path:'notesaffich',component:NotesaffichageComponent},
 ];
 
 @NgModule({
